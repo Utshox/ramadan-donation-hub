@@ -332,7 +332,7 @@ export default function Home() {
                     title: "Field Deployment",
                     img: "/media/story-vid.mp4",
                     type: "video",
-                    quote: "Witness our teams delivering food parcels directly to those who need it most, navigating difficult terrain to keep our promise.",
+                    quote: "When you give, distance disappears. You are standing right beside us in these villages, handing dignity and relief to families who have waited so long for a moment of ease.",
                     personName: "Field Team",
                     personRole: "Global Operations",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp1bMyRjpsGtgtCjyn5scxoXbumvQGIHoPJSSjcRwnppVDHC5Vpu2J5wpyMjYPqyNr1nu3pjtTWMRAxYVHCVUGWalrF9rcqIEnaAOdkfQOA3C82Xr326j2hMOLDgpMSWovM5B3tnqTXobqRmGMNysAyr8AMBreB-tjCduAnbXiy_i-xXLSbXAWg3rr_n0S31pslHoLoLhjcPSqtaKyk1_LZXs5Pizt7pKz3H6T_Ga5OtHhH9Itj3StIDfaGZYRkepRX_ebtNHNuYM"
@@ -342,7 +342,7 @@ export default function Home() {
                     title: "Packing the Parcels",
                     img: "/media/story-1.jpg",
                     type: "image",
-                    quote: "Every box is packed with dignity and care. These supplies will sustain a family of five for the entire month of Ramadan.",
+                    quote: "These aren't just parcels of food; they are boxes filled with love from across the globe. Watching a community come together to support each other is the true spirit of giving.",
                     personName: "Volunteer Update",
                     personRole: "Logistics Hub",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG_r2gU8na3r8MnAMQC0L-cmrGvt9fEGWk0i1IBDMSfMawx3kE0At7eek_t55gGGS3ZiNb_lqeJz_Tfh05aa_W9O-BKnGEMPc98Caw9pbzi1Y7nQleC7HfZSC3ryBXVuTyQBkkQWhjHICqk3H7VK3-9e66rhHygNQmKq2QlCbbftiZKepZWrxW3rg8OPPNBo9ppar_lBrfAJ5pCUB5jMVdyZipc6j8kW8ey2iugSfpWF7dEQU_Wr9tMBo84xq6iKtY3IpmusgZIuU"
@@ -352,7 +352,7 @@ export default function Home() {
                     title: "Smiles of Hope",
                     img: "/media/story-2.jpg",
                     type: "image",
-                    quote: "Seeing the children smile when the aid trucks arrive reminds us why we continue this mission every single day.",
+                    quote: "There is no sight more beautiful than a community breaking fast together in peace. Your compassion turned empty plates into a vibrant feast of unity and profound gratitude.",
                     personName: "Community Leader",
                     personRole: "Local Partner",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpXsEi6YKWH0k16fkCQT1l1uPwdgPA-Fs0nKH4XMK9Wt9Hj9Rf__VY2HsXXbIe653crpCpJHVDnSW05_LGQGQigRsr5zuI70udbmeFTJkwr7sbGG1vNVy5sUa_zBc0kpkzBvojLQKf3eWLFgw7IStlC6lAfMnrllZOprwStqYAr4f3BK_YhY7zogw07obDZ9TYt2ClXieasI5l95IkGnjQ9b1XvMt9kaozeBCYrfvCyWCSsP5XxGO_S_F1sq4wcfAH-pUYoL6RrOU"
@@ -362,7 +362,7 @@ export default function Home() {
                     title: "Life Saving Care",
                     img: "/media/story-3.jpg",
                     type: "image",
-                    quote: "The mobile clinics funded by Give and Go Relief are providing critical care when access to hospitals is impossible.",
+                    quote: "Look into her eyes and see the profound impact of your mercy. Your generosity reached her when she needed it most, reminding her that she is loved and never forgotten.",
                     personName: "Dr. Youssef",
                     personRole: "Medical Coordinator",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp1bMyRjpsGtgtCjyn5scxoXbumvQGIHoPJSSjcRwnppVDHC5Vpu2J5wpyMjYPqyNr1nu3pjtTWMRAxYVHCVUGWalrF9rcqIEnaAOdkfQOA3C82Xr326j2hMOLDgpMSWovM5B3tnqTXobqRmGMNysAyr8AMBreB-tjCduAnbXiy_i-xXLSbXAWg3rr_n0S31pslHoLoLhjcPSqtaKyk1_LZXs5Pizt7pKz3H6T_Ga5OtHhH9Itj3StIDfaGZYRkepRX_ebtNHNuYM"
@@ -372,7 +372,7 @@ export default function Home() {
                     title: "A Brighter Future",
                     img: "/media/story-4.jpg",
                     type: "image",
-                    quote: "With proper schooling and nutrition secured, these children can focus on what matters most—learning and playing safely.",
+                    quote: "The weight on her shoulders is no longer a burden of struggle, but a harvest of your kindness. Her radiant smile is a quiet prayer of thanks sent directly to you.",
                     personName: "Amina R.",
                     personRole: "Teacher",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG_r2gU8na3r8MnAMQC0L-cmrGvt9fEGWk0i1IBDMSfMawx3kE0At7eek_t55gGGS3ZiNb_lqeJz_Tfh05aa_W9O-BKnGEMPc98Caw9pbzi1Y7nQleC7HfZSC3ryBXVuTyQBkkQWhjHICqk3H7VK3-9e66rhHygNQmKq2QlCbbftiZKepZWrxW3rg8OPPNBo9ppar_lBrfAJ5pCUB5jMVdyZipc6j8kW8ey2iugSfpWF7dEQU_Wr9tMBo84xq6iKtY3IpmusgZIuU"

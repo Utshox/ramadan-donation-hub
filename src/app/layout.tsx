@@ -18,8 +18,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Give and Go Relief",
-  description: "Multiply your blessings this Ramadan.",
+  title: "Give and Go Relief | Ramadan 2026",
+  description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
+  openGraph: {
+    title: "Give and Go Relief | Ramadan 2026",
+    description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
+    url: "https://ramadan-donation-hub.vercel.app/",
+    siteName: "Give and Go Relief",
+    images: [
+      {
+        url: "https://givegoglobal.org/wp-content/uploads/2024/06/6.jpg", // Smiles of Hope image as preview
+        width: 1200,
+        height: 630,
+        alt: "Children smiling holding food parcels provided by Give and Go Relief donations.",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Give and Go Relief | Ramadan 2026",
+    description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
+    images: ["https://givegoglobal.org/wp-content/uploads/2024/06/6.jpg"],
+  },
 };
 
 export default function RootLayout({
