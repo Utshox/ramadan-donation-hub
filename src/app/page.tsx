@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 
 // Uses actual env var if available, otherwise fallback
 const stripePromise = loadStripe(
@@ -98,10 +99,16 @@ export default function Home() {
         <section className="relative pt-10 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 dark:to-transparent z-10 w-full lg:w-2/3"></div>
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAuG1UpsogjfO1wGMgCJMtNS_rxhxyzPLMP0I1rjVw8rAChKAWKr9jBHXt8647VYqwO6QkBLOR3Njrz_i0M6JG6tYuhXVUhtb6pfqIpCZQQHWoMa9kQ4tQ7JmezrrMGk28-1VokgHFUGQFUNFgfyLvySxF4ZSIaTnsjX-Whk8mTpMPaElty3QiR6iY9nX4BfEReAcRPFx1bIJ8iyKtpau0Aih4AlK-kcQjsgFwOhZqMQZ4tsL9pwz0NlpGIT8djCpPLWOfsrqKZEbs')" }}
-            ></div>
+            <div className="absolute inset-0">
+              <Image
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuG1UpsogjfO1wGMgCJMtNS_rxhxyzPLMP0I1rjVw8rAChKAWKr9jBHXt8647VYqwO6QkBLOR3Njrz_i0M6JG6tYuhXVUhtb6pfqIpCZQQHWoMa9kQ4tQ7JmezrrMGk28-1VokgHFUGQFUNFgfyLvySxF4ZSIaTnsjX-Whk8mTpMPaElty3QiR6iY9nX4BfEReAcRPFx1bIJ8iyKtpau0Aih4AlK-kcQjsgFwOhZqMQZ4tsL9pwz0NlpGIT8djCpPLWOfsrqKZEbs"
+                alt="Ramadan Donation Hero Background"
+                fill
+                priority
+                quality={90}
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
+            </div>
           </div>
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row gap-12 items-start lg:items-center">
@@ -380,7 +387,7 @@ export default function Home() {
                 ].map((story, i) => (
                   <div key={i} className="embla__slide flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pr-6 pb-8 pt-4">
                     <div className="group h-full bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col hover:-translate-y-2">
-                       <div
+                      <div
                         className="h-64 overflow-hidden relative cursor-pointer"
                         onClick={() => setSelectedMedia({ type: story.type as any, url: story.img })}
                       >
@@ -397,7 +404,15 @@ export default function Home() {
                             muted loop autoPlay playsInline
                           />
                         ) : (
-                          <div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url('${encodeURI(story.img)}')` }}></div>
+                          <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-700">
+                            <Image
+                              src={story.img}
+                              alt={story.title}
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              style={{ objectFit: "cover", objectPosition: "center" }}
+                            />
+                          </div>
                         )}
                         <div className="absolute bottom-4 left-4 z-20 text-white pointer-events-none">
                           <p className="text-xs font-black uppercase tracking-[0.2em] mb-1 text-primary drop-shadow-md">{story.location}</p>
@@ -409,7 +424,9 @@ export default function Home() {
                           "{story.quote}"
                         </blockquote>
                         <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
-                          <div className="w-10 h-10 rounded-full bg-gray-200 bg-cover bg-center ring-2 ring-primary/30" style={{ backgroundImage: `url('${story.personImg}')` }}></div>
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 shrink-0 bg-gray-200">
+                            <Image src={story.personImg} alt={story.personName} fill sizes="40px" style={{ objectFit: "cover" }} />
+                          </div>
                           <div>
                             <p className="text-sm font-bold text-gray-900 dark:text-white">{story.personName}</p>
                             <p className="text-xs font-semibold text-primary">{story.personRole}</p>
@@ -512,11 +529,14 @@ export default function Home() {
                 ></iframe>
               </div>
             ) : (
-              <div className="flex justify-center items-center">
-                <img
+              <div className="relative flex justify-center items-center w-full max-h-[85vh] h-[85vh]">
+                <Image
                   src={selectedMedia.url}
                   alt="Expanded view"
-                  className="w-full h-auto max-h-[85vh] object-contain rounded-2xl shadow-2xl ring-1 ring-white/10"
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: "contain" }}
+                  className="rounded-2xl shadow-2xl ring-1 ring-white/10"
                 />
               </div>
             )}
