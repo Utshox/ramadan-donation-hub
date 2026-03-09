@@ -338,49 +338,49 @@ export default function Home() {
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp1bMyRjpsGtgtCjyn5scxoXbumvQGIHoPJSSjcRwnppVDHC5Vpu2J5wpyMjYPqyNr1nu3pjtTWMRAxYVHCVUGWalrF9rcqIEnaAOdkfQOA3C82Xr326j2hMOLDgpMSWovM5B3tnqTXobqRmGMNysAyr8AMBreB-tjCduAnbXiy_i-xXLSbXAWg3rr_n0S31pslHoLoLhjcPSqtaKyk1_LZXs5Pizt7pKz3H6T_Ga5OtHhH9Itj3StIDfaGZYRkepRX_ebtNHNuYM"
                   },
                   {
-                    location: "Distribution Center",
-                    title: "Packing the Parcels",
-                    img: "/media/story-1.jpg",
+                    location: "Water & Sustenance",
+                    title: "A Father's Relief",
+                    img: "/media/africa 0.png",
                     type: "image",
-                    quote: "These aren't just parcels of food; they are boxes filled with love from across the globe. Watching a community come together to support each other is the true spirit of giving.",
-                    personName: "Volunteer Update",
-                    personRole: "Logistics Hub",
-                    personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG_r2gU8na3r8MnAMQC0L-cmrGvt9fEGWk0i1IBDMSfMawx3kE0At7eek_t55gGGS3ZiNb_lqeJz_Tfh05aa_W9O-BKnGEMPc98Caw9pbzi1Y7nQleC7HfZSC3ryBXVuTyQBkkQWhjHICqk3H7VK3-9e66rhHygNQmKq2QlCbbftiZKepZWrxW3rg8OPPNBo9ppar_lBrfAJ5pCUB5jMVdyZipc6j8kW8ey2iugSfpWF7dEQU_Wr9tMBo84xq6iKtY3IpmusgZIuU"
-                  },
-                  {
-                    location: "Community Outreach",
-                    title: "Smiles of Hope",
-                    img: "/media/story-2.jpg",
-                    type: "image",
-                    quote: "There is no sight more beautiful than a community breaking fast together in peace. Your compassion turned empty plates into a vibrant feast of unity and profound gratitude.",
+                    quote: "Water is life. Clean water is hope. Because of your generosity, these children no longer have to fear what they drink. You have given this community a foundation to thrive.",
                     personName: "Community Leader",
                     personRole: "Local Partner",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpXsEi6YKWH0k16fkCQT1l1uPwdgPA-Fs0nKH4XMK9Wt9Hj9Rf__VY2HsXXbIe653crpCpJHVDnSW05_LGQGQigRsr5zuI70udbmeFTJkwr7sbGG1vNVy5sUa_zBc0kpkzBvojLQKf3eWLFgw7IStlC6lAfMnrllZOprwStqYAr4f3BK_YhY7zogw07obDZ9TYt2ClXieasI5l95IkGnjQ9b1XvMt9kaozeBCYrfvCyWCSsP5XxGO_S_F1sq4wcfAH-pUYoL6RrOU"
                   },
                   {
-                    location: "Emergency Medical",
-                    title: "Life Saving Care",
-                    img: "/media/story-3.jpg",
+                    location: "Distribution Center",
+                    title: "Nourishing Meals",
+                    img: "/media/africa 1.png",
                     type: "image",
-                    quote: "Look into her eyes and see the profound impact of your mercy. Your generosity reached her when she needed it most, reminding her that she is loved and never forgotten.",
+                    quote: "There is no sight more beautiful than a community breaking fast together in peace. Watching these children receive warm, hearty meals is witnessing the true spirit of giving in action.",
+                    personName: "Volunteer Update",
+                    personRole: "Logistics Hub",
+                    personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG_r2gU8na3r8MnAMQC0L-cmrGvt9fEGWk0i1IBDMSfMawx3kE0At7eek_t55gGGS3ZiNb_lqeJz_Tfh05aa_W9O-BKnGEMPc98Caw9pbzi1Y7nQleC7HfZSC3ryBXVuTyQBkkQWhjHICqk3H7VK3-9e66rhHygNQmKq2QlCbbftiZKepZWrxW3rg8OPPNBo9ppar_lBrfAJ5pCUB5jMVdyZipc6j8kW8ey2iugSfpWF7dEQU_Wr9tMBo84xq6iKtY3IpmusgZIuU"
+                  },
+                  {
+                    location: "School Outreach",
+                    title: "Smiles of Hope",
+                    img: "/media/africa 2.png",
+                    type: "image",
+                    quote: "The weight on their shoulders is no longer a burden of struggle, but a harvest of your kindness. They can just be kids now. Their radiant smiles are quiet prayers of thanks sent directly to you.",
+                    personName: "Amina R.",
+                    personRole: "Teacher",
+                    personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpXsEi6YKWH0k16fkCQT1l1uPwdgPA-Fs0nKH4XMK9Wt9Hj9Rf__VY2HsXXbIe653crpCpJHVDnSW05_LGQGQigRsr5zuI70udbmeFTJkwr7sbGG1vNVy5sUa_zBc0kpkzBvojLQKf3eWLFgw7IStlC6lAfMnrllZOprwStqYAr4f3BK_YhY7zogw07obDZ9TYt2ClXieasI5l95IkGnjQ9b1XvMt9kaozeBCYrfvCyWCSsP5XxGO_S_F1sq4wcfAH-pUYoL6RrOU"
+                  },
+                  {
+                    location: "Community Outreach",
+                    title: "A Full Plate",
+                    img: "/media/africa 3.png",
+                    type: "image",
+                    quote: "Look into their eyes and see the profound impact of your mercy. Your generosity reached these children when they needed it most, reminding them that they are loved and never forgotten.",
                     personName: "Dr. Youssef",
                     personRole: "Medical Coordinator",
                     personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAp1bMyRjpsGtgtCjyn5scxoXbumvQGIHoPJSSjcRwnppVDHC5Vpu2J5wpyMjYPqyNr1nu3pjtTWMRAxYVHCVUGWalrF9rcqIEnaAOdkfQOA3C82Xr326j2hMOLDgpMSWovM5B3tnqTXobqRmGMNysAyr8AMBreB-tjCduAnbXiy_i-xXLSbXAWg3rr_n0S31pslHoLoLhjcPSqtaKyk1_LZXs5Pizt7pKz3H6T_Ga5OtHhH9Itj3StIDfaGZYRkepRX_ebtNHNuYM"
-                  },
-                  {
-                    location: "Orphan Sponsorship",
-                    title: "A Brighter Future",
-                    img: "/media/story-4.jpg",
-                    type: "image",
-                    quote: "The weight on her shoulders is no longer a burden of struggle, but a harvest of your kindness. Her radiant smile is a quiet prayer of thanks sent directly to you.",
-                    personName: "Amina R.",
-                    personRole: "Teacher",
-                    personImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG_r2gU8na3r8MnAMQC0L-cmrGvt9fEGWk0i1IBDMSfMawx3kE0At7eek_t55gGGS3ZiNb_lqeJz_Tfh05aa_W9O-BKnGEMPc98Caw9pbzi1Y7nQleC7HfZSC3ryBXVuTyQBkkQWhjHICqk3H7VK3-9e66rhHygNQmKq2QlCbbftiZKepZWrxW3rg8OPPNBo9ppar_lBrfAJ5pCUB5jMVdyZipc6j8kW8ey2iugSfpWF7dEQU_Wr9tMBo84xq6iKtY3IpmusgZIuU"
                   }
                 ].map((story, i) => (
                   <div key={i} className="embla__slide flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pr-6 pb-8 pt-4">
                     <div className="group h-full bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col hover:-translate-y-2">
-                      <div
+                       <div
                         className="h-64 overflow-hidden relative cursor-pointer"
                         onClick={() => setSelectedMedia({ type: story.type as any, url: story.img })}
                       >
@@ -397,7 +397,7 @@ export default function Home() {
                             muted loop autoPlay playsInline
                           />
                         ) : (
-                          <div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url('${story.img}')` }}></div>
+                          <div className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url('${encodeURI(story.img)}')` }}></div>
                         )}
                         <div className="absolute bottom-4 left-4 z-20 text-white pointer-events-none">
                           <p className="text-xs font-black uppercase tracking-[0.2em] mb-1 text-primary drop-shadow-md">{story.location}</p>
