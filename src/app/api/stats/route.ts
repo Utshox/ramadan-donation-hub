@@ -9,18 +9,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_dummy", {
 
 export async function GET() {
     try {
-        // Fetch completed checkout sessions
-        const sessions = await stripe.checkout.sessions.list({
+        // Fetch successful payment intents
+        const payments = await stripe.paymentIntents.list({
             limit: 100, // adjust as needed
-            expand: ['data.line_items'],
         });
 
         let totalRaised = 0;
         let donorCount = 0;
 
-        sessions.data.forEach(session => {
-            if (session.payment_status === 'paid') {
-                totalRaised += (session.amount_total || 0) / 100; // Convert cents to dollars
+        payments.data.forEach(payment => {
+            if (payment.status === 'succeeded') {
+                totalRaised += (payment.amount_received || 0) / 100; // Convert cents to dollars
                 donorCount++;
             }
         });
