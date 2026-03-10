@@ -14,6 +14,8 @@ export default function Home() {
   const [donationAmount, setDonationAmount] = useState<number | "">("");
   const [donationType, setDonationType] = useState<"one-time" | "monthly">("one-time");
   const [isLoading, setIsLoading] = useState(false);
+  const [totalRaised, setTotalRaised] = useState(0);
+  const [donorCount, setDonorCount] = useState(0);
 
   // Zakat Calculator States
   const [savings, setSavings] = useState<number | "">("");
@@ -59,6 +61,21 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  // Fetch campaign stats on mount
+  useState(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        setTotalRaised(data.totalRaised || 0);
+        setDonorCount(data.donorCount || 0);
+      } catch (err) {
+        console.error("Failed to fetch campaign stats:", err);
+      }
+    };
+    fetchStats();
+  });
 
   const handlePayZakat = () => {
     setDonationAmount(zakatTotal > 0 ? zakatTotal : "");
@@ -130,19 +147,19 @@ export default function Home() {
                   <div className="flex justify-between items-end mb-2">
                     <div>
                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Raised</p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-white">$0</p>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">${totalRaised.toLocaleString()}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Goal</p>
-                      <p className="text-base font-semibold text-gray-700 dark:text-gray-300">$1,000,000</p>
+                      <p className="text-base font-semibold text-gray-700 dark:text-gray-300">$7,000</p>
                     </div>
                   </div>
                   <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 mb-3 overflow-hidden">
-                    <div className="bg-primary h-3 rounded-full transition-all duration-1000 ease-out" style={{ width: "0%" }}></div>
+                    <div className="bg-primary h-3 rounded-full transition-all duration-1000 ease-out" style={{ width: `${Math.min((totalRaised / 7000) * 100, 100)}%` }}></div>
                   </div>
                   <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                    <span>0 Donors</span>
-                    <span>0% Reached</span>
+                    <span>{donorCount} Donors</span>
+                    <span>{((totalRaised / 7000) * 100).toFixed(1)}% Reached</span>
                   </div>
                 </div>
 
@@ -486,19 +503,69 @@ export default function Home() {
       </main>
 
       {/* Footer Minimal */}
-      <footer className="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 pt-8 pb-8">
+      <footer className="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 pt-12 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-primary/20 rounded-full text-green-700 dark:text-green-400">
-                <span className="material-symbols-outlined">mosque</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 pb-8 border-b border-gray-200 dark:border-gray-800 text-sm">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="p-1.5 bg-primary/20 rounded-full text-green-700 dark:text-green-400">
+                  <span className="material-symbols-outlined">mosque</span>
+                </div>
+                <span className="text-xl font-bold text-gray-900 dark:text-white">Give and Go<span className="text-green-600 dark:text-primary">Relief</span></span>
               </div>
-              <span className="text-lg font-bold text-gray-900 dark:text-white">Give and Go<span className="text-green-600 dark:text-primary">Relief</span></span>
+              <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-sm">
+                Dedicated to providing essential relief, food, and water to communities in need, especially during the blessed month of Ramadan.
+              </p>
+              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 self-start inline-block">
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Legal Information</p>
+                <p className="font-semibold text-gray-900 dark:text-gray-200 mb-2">Give and go Relief is doing business under Give and go Global</p>
+                <div className="flex items-center gap-2 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-3 py-1.5 rounded-lg border border-green-200 dark:border-green-800/30 w-fit">
+                  <span className="material-symbols-outlined text-base">verified</span>
+                  <span className="text-xs font-bold uppercase tracking-wide">Registered 501(c)(3) Non-Profit</span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-gray-500">© 2026 Give and Go Relief. All rights reserved.</p>
+            
+            <div>
+              <h4 className="font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Quick Links</h4>
+              <ul className="space-y-3 text-gray-600 dark:text-gray-400">
+                <li><a href="#" className="hover:text-primary transition-colors">Our Mission</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Where We Work</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Zakat Calculator</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Annual Reports</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Contact Us</h4>
+              <ul className="space-y-3 text-gray-600 dark:text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-base mt-0.5">location_on</span>
+                  <span>123 Relief Way, Suite 100<br/>Charity City, ST 12345</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-base">mail</span>
+                  <a href="mailto:info@giveandgorelief.org" className="hover:text-primary transition-colors">info@giveandgorelief.org</a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-base">phone</span>
+                  <a href="tel:+18001234567" className="hover:text-primary transition-colors">1-800-123-4567</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-gray-500">© 2026 Give and Go Global. All rights reserved.</p>
             <div className="flex gap-4">
-              <span className="material-symbols-outlined text-lg text-gray-400">public</span>
-              <span className="material-symbols-outlined text-lg text-gray-400">lock</span>
+              <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</a>
+              <span className="text-gray-300 dark:text-gray-700">•</span>
+              <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer material-symbols-outlined text-xl">camera_alt</span>
+              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer font-black text-xl leading-none pb-0.5">X</span>
+              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer material-symbols-outlined text-xl">play_circle</span>
             </div>
           </div>
         </div>
