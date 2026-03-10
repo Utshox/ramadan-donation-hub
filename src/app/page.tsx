@@ -66,7 +66,7 @@ export default function Home() {
   useState(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('/api/stats');
+        const res = await fetch('/api/stats', { cache: 'no-store' });
         const data = await res.json();
         setTotalRaised(data.totalRaised || 0);
         setDonorCount(data.donorCount || 0);
@@ -505,7 +505,7 @@ export default function Home() {
       {/* Footer Minimal */}
       <footer className="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 pt-12 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 pb-8 border-b border-gray-200 dark:border-gray-800 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-200 dark:border-gray-800 text-sm">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center gap-2 mb-4">
                 <div className="p-1.5 bg-primary/20 rounded-full text-green-700 dark:text-green-400">
@@ -518,43 +518,29 @@ export default function Home() {
               </p>
               <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 self-start inline-block">
                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Legal Information</p>
-                <p className="font-semibold text-gray-900 dark:text-gray-200 mb-2">Give and go Relief is doing business under Give and go Global</p>
+                <p className="font-semibold text-gray-900 dark:text-gray-200 mb-2">Give and go Relief is doing business under <a href="https://givegoglobal.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline transition-all">Give and go Global</a></p>
                 <div className="flex items-center gap-2 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-3 py-1.5 rounded-lg border border-green-200 dark:border-green-800/30 w-fit">
                   <span className="material-symbols-outlined text-base">verified</span>
                   <span className="text-xs font-bold uppercase tracking-wide">Registered 501(c)(3) Non-Profit</span>
                 </div>
               </div>
             </div>
-            
-            <div>
-              <h4 className="font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Quick Links</h4>
-              <ul className="space-y-3 text-gray-600 dark:text-gray-400">
-                <li><a href="#" className="hover:text-primary transition-colors">Our Mission</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Where We Work</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Zakat Calculator</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Annual Reports</a></li>
-              </ul>
-            </div>
-            
+
             <div>
               <h4 className="font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Contact Us</h4>
               <ul className="space-y-3 text-gray-600 dark:text-gray-400">
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-base mt-0.5">location_on</span>
-                  <span>123 Relief Way, Suite 100<br/>Charity City, ST 12345</span>
-                </li>
                 <li className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-base">mail</span>
-                  <a href="mailto:info@giveandgorelief.org" className="hover:text-primary transition-colors">info@giveandgorelief.org</a>
+                  <a href="mailto:info@givegoglobal.org" className="hover:text-primary transition-colors">info@givegoglobal.org</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-base">phone</span>
-                  <a href="tel:+18001234567" className="hover:text-primary transition-colors">1-800-123-4567</a>
+                  <a href="tel:+15103994743" className="hover:text-primary transition-colors">+510-399-4743</a>
                 </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500">© 2026 Give and Go Global. All rights reserved.</p>
             <div className="flex gap-4">
