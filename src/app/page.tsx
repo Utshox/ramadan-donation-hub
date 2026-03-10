@@ -543,16 +543,6 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500">© 2026 Give and Go Global. All rights reserved.</p>
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-              <span className="text-gray-300 dark:text-gray-700">•</span>
-              <a href="#" className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Terms of Service</a>
-            </div>
-            <div className="flex gap-4">
-              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer material-symbols-outlined text-xl">camera_alt</span>
-              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer font-black text-xl leading-none pb-0.5">X</span>
-              <span className="text-gray-400 hover:text-primary transition-colors cursor-pointer material-symbols-outlined text-xl">play_circle</span>
-            </div>
           </div>
         </div>
       </footer>
