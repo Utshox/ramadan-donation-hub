@@ -115,17 +115,23 @@ const FAQS = [
 ];
 
 function useCountdown(target: Date) {
-  const [now, setNow] = useState(() => new Date());
+  // null on the server and on the very first client render, so SSR and
+  // hydration markup match. Real values only appear after mount.
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
+  if (!now) return { days: 0, hours: 0, mins: 0, secs: 0, ready: false };
   const diff = Math.max(0, target.getTime() - now.getTime());
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  const secs = Math.floor((diff % 60000) / 1000);
-  return { days, hours, mins, secs };
+  return {
+    days: Math.floor(diff / 86400000),
+    hours: Math.floor((diff % 86400000) / 3600000),
+    mins: Math.floor((diff % 3600000) / 60000),
+    secs: Math.floor((diff % 60000) / 1000),
+    ready: true,
+  };
 }
 
 export default function Home() {
@@ -281,7 +287,7 @@ export default function Home() {
                   ].map((c) => (
                     <div key={c.l} className="bg-white/80 dark:bg-surface-dark/80 backdrop-blur rounded-xl p-3 text-center border border-gray-100 dark:border-gray-800 shadow-sm">
                       <div className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white tabular-nums">
-                        {String(c.v).padStart(2, "0")}
+                        {countdown.ready ? String(c.v).padStart(2, "0") : "--"}
                       </div>
                       <div className="text-[10px] uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400 mt-1">{c.l}</div>
                     </div>
