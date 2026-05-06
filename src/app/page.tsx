@@ -138,6 +138,8 @@ export default function Home() {
 
   const [selectedMedia, setSelectedMedia] = useState<{ type: "video" | "image"; url: string } | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [qurbaniModal, setQurbaniModal] = useState<typeof QURBANI_OPTIONS[number] | null>(null);
+  const [qurbaniLoading, setQurbaniLoading] = useState(false);
 
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" });
   const countdown = useCountdown(EID_AL_ADHA_DATE);
@@ -172,10 +174,28 @@ export default function Home() {
     }
   };
 
-  const pickShare = (price: number) => {
-    setDonationAmount(price);
-    setDonationType("one-time");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleQurbaniDonate = async () => {
+    if (!qurbaniModal) return;
+    setQurbaniLoading(true);
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: qurbaniModal.price, type: "one-time" }),
+      });
+      const { url, error } = await response.json();
+      if (error) throw new Error(error);
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error("No redirect URL returned from Stripe.");
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert("Checkout failed: " + err.message);
+    } finally {
+      setQurbaniLoading(false);
+    }
   };
 
   const progressPct = Math.min((totalRaised / GOAL) * 100, 100);
@@ -385,7 +405,7 @@ export default function Home() {
               {QURBANI_OPTIONS.map((opt) => (
                 <button
                   key={opt.key}
-                  onClick={() => pickShare(opt.price)}
+                  onClick={() => setQurbaniModal(opt)}
                   className="group text-left bg-background-light dark:bg-background-dark rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-primary hover:-translate-y-1 transition-all shadow-sm hover:shadow-2xl flex flex-col"
                 >
                   <div className="relative h-56 overflow-hidden">
@@ -747,6 +767,89 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Qurbani Confirm Modal */}
+      {qurbaniModal && (
+        <div
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => !qurbaniLoading && setQurbaniModal(null)}
+        >
+          <div
+            className="relative w-full max-w-md bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-800"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="h-2 bg-gradient-to-r from-green-600 via-primary to-green-600"></div>
+            <button
+              type="button"
+              onClick={() => !qurbaniLoading && setQurbaniModal(null)}
+              disabled={qurbaniLoading}
+              className="absolute top-4 right-4 z-10 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors disabled:opacity-50"
+              aria-label="Close"
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+
+            <div className="relative h-44">
+              <Image
+                src={qurbaniModal.img}
+                alt={qurbaniModal.animal}
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-3 left-5 text-white">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-primary">{qurbaniModal.shares}</p>
+                <h3 className="text-2xl font-bold drop-shadow">{qurbaniModal.animal} Qurbani</h3>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">{qurbaniModal.detail}</p>
+
+              <div className="bg-background-light dark:bg-background-dark rounded-xl p-4 mb-5 border border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Total</span>
+                <div className="text-right">
+                  <span className="text-3xl font-black text-gray-900 dark:text-white">${qurbaniModal.price.toLocaleString()}</span>
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">USD</span>
+                </div>
+              </div>
+
+              <ul className="space-y-2 mb-6 text-sm text-gray-700 dark:text-gray-300">
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">check_circle</span>
+                  Distributed fresh on the days of Eid
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">check_circle</span>
+                  100% tax-deductible — receipt by email
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">check_circle</span>
+                  Secure checkout via Stripe
+                </li>
+              </ul>
+
+              <button
+                onClick={handleQurbaniDonate}
+                disabled={qurbaniLoading}
+                className="w-full bg-primary hover:bg-primary-dark text-gray-900 font-bold py-4 px-6 rounded-xl shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all flex items-center justify-center gap-2 group disabled:opacity-75 disabled:cursor-not-allowed"
+              >
+                <span>{qurbaniLoading ? "Processing..." : `Donate $${qurbaniModal.price.toLocaleString()}`}</span>
+                {!qurbaniLoading && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>}
+              </button>
+              <button
+                type="button"
+                onClick={() => !qurbaniLoading && setQurbaniModal(null)}
+                disabled={qurbaniLoading}
+                className="w-full mt-2 text-sm font-semibold text-gray-500 dark:text-gray-400 py-2 hover:text-gray-700 dark:hover:text-gray-200 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
       {selectedMedia && (
