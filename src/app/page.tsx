@@ -29,7 +29,7 @@ const QURBANI_OPTIONS = [
     price: 1000,
     img: "/eid/cow.png",
     tagline: "Feed an entire community",
-    detail: "Provide a complete cow Qurbani — fresh meat distributed to dozens of families across our partner villages.",
+    detail: "Provide a complete cow Qurbani — fresh meat distributed to dozens of families across partner villages in Bangladesh and Africa.",
   },
 ] as const;
 
@@ -79,7 +79,7 @@ const STORIES = [
     personImg: "/eid/distribution.png",
   },
   {
-    location: "Three Generations",
+    location: "Bangladesh",
     title: "Around One Plate",
     img: "/eid/family.png",
     type: "image" as const,
@@ -88,6 +88,17 @@ const STORIES = [
     personName: "Amina R.",
     personRole: "Recipient family",
     personImg: "/eid/family.png",
+  },
+  {
+    location: "Africa",
+    title: "An Eid We Won't Forget",
+    img: "/eid/cta-african.png",
+    type: "image" as const,
+    quote:
+      "We have not eaten like this in a year. The children ran around the courtyard laughing — they will remember this Eid for the rest of their lives. May Allah bless every hand that gave.",
+    personName: "Ibrahim A.",
+    personRole: "Recipient, East Africa",
+    personImg: "/eid/cta-african.png",
   },
 ];
 
@@ -106,7 +117,7 @@ const FAQS = [
   },
   {
     q: "Where is the meat distributed?",
-    a: "Primarily across Bangladesh — including rural Khulna, Sylhet, and Chittagong districts — alongside other communities in need reached through Give and Go Global. The meat is distributed fresh, on the days of Eid.",
+    a: "Across two regions: rural Bangladesh — including Khulna, Sylhet, and Chittagong — and Muslim communities across Sub-Saharan Africa, East Africa, and West Africa. The meat is hand-delivered fresh on the days of Eid.",
   },
   {
     q: "Is my donation tax-deductible?",
@@ -274,7 +285,7 @@ export default function Home() {
                   This Eid, be the reason a family <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-primary">smiles</span>.
                 </h1>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-xl">
-                  Fulfill your Qurbani. Place fresh meat on the table of a family in Bangladesh — and let them taste the joy of Eid alongside you.
+                  Fulfill your Qurbani. Place fresh meat on the table of a family in Bangladesh and across Africa — and let them taste the joy of Eid alongside you.
                 </p>
 
                 {/* Countdown */}
@@ -403,7 +414,7 @@ export default function Home() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">A sacrifice that travels further than you can.</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                Every share is hand-delivered as fresh meat to a family in Bangladesh. Pick what fits your heart and your means.
+                Every share is hand-delivered as fresh meat to a family in Bangladesh and across Africa. Pick what fits your heart and your means.
               </p>
             </div>
 
@@ -525,7 +536,7 @@ export default function Home() {
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">Communities served</p>
                   <div className="flex flex-wrap gap-2">
-                    {["Bangladesh — Khulna", "Bangladesh — Sylhet", "Bangladesh — Chittagong", "Communities reached through Give and Go Global"].map((tag) => (
+                    {["Bangladesh — Khulna", "Bangladesh — Sylhet", "Bangladesh — Chittagong", "Sub-Saharan Africa", "East Africa", "West Africa"].map((tag) => (
                       <span key={tag} className="px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-primary text-xs font-semibold border border-green-200 dark:border-green-800/40">
                         {tag}
                       </span>
@@ -732,7 +743,7 @@ export default function Home() {
                 <span className="text-xl font-bold text-gray-900 dark:text-white">Give and Go<span className="text-green-600 dark:text-primary">Relief</span></span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-sm">
-                Dedicated to providing essential relief, food, and water to communities in need — especially during the blessed days of Eid al-Adha.
+                Dedicated to providing essential relief, food, and water to communities in need across Bangladesh and Africa — especially during the blessed days of Eid al-Adha.
               </p>
               <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 self-start inline-block">
                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Legal Information</p>
