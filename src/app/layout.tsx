@@ -18,12 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.giveandgorelief.org"),
   title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
   description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
   openGraph: {
     title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
     description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
-    url: "https://ramadan-donation-hub.vercel.app/",
+    url: "https://www.giveandgorelief.org/",
     siteName: "Give and Go Relief",
     images: [
       {
