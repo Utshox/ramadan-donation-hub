@@ -27,7 +27,8 @@ export const metadata: Metadata = {
     siteName: "Give and Go Relief",
     images: [
       {
-        url: "/og-eid.png",
+        url: "/og-eid.jpg",
+        type: "image/jpeg",
         width: 1200,
         height: 630,
         alt: "An African family gratefully receiving a parcel of fresh Qurbani meat from a Give and Go Relief volunteer at their village home.",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
     description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
-    images: ["/og-eid.png"],
+    images: ["/og-eid.jpg"],
   },
 };
 
