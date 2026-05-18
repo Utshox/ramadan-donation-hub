@@ -18,19 +18,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Give and Go Relief | Ramadan 2026",
-  description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
+  title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
+  description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
   openGraph: {
-    title: "Give and Go Relief | Ramadan 2026",
-    description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
+    title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
+    description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
     url: "https://ramadan-donation-hub.vercel.app/",
     siteName: "Give and Go Relief",
     images: [
       {
-        url: "https://givegoglobal.org/wp-content/uploads/2024/06/6.jpg", // Smiles of Hope image as preview
+        url: "/og-eid.png",
         width: 1200,
         height: 630,
-        alt: "Children smiling holding food parcels provided by Give and Go Relief donations.",
+        alt: "An African family gratefully receiving a parcel of fresh Qurbani meat from a Give and Go Relief volunteer at their village home.",
       },
     ],
     locale: "en_US",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Give and Go Relief | Ramadan 2026",
-    description: "An open door for giving. Your contribution provides life-saving meals, clean water, and hope for a brighter future across the globe. Answer the call this Ramadan.",
-    images: ["https://givegoglobal.org/wp-content/uploads/2024/06/6.jpg"],
+    title: "Give and Go Relief | Eid al-Adha 2026 Qurbani",
+    description: "Share your Qurbani with families in Bangladesh and Africa. A single share provides fresh meat — and dignity — to families who rarely taste it. Answer the call this Eid al-Adha.",
+    images: ["/og-eid.png"],
   },
 };
 
