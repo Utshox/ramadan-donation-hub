@@ -21,15 +21,27 @@ const QURBANI_OPTIONS = [
     img: "/eid/sheep.png",
     tagline: "Feeds one family for days",
     detail: "A complete sacrifice — perfect for one household giving Qurbani.",
+    isCustom: false,
   },
   {
     key: "cow",
     animal: "Cow",
     shares: "Full share",
-    price: 1000,
+    price: 650,
     img: "/eid/cow.png",
     tagline: "Feed an entire community",
     detail: "Provide a complete cow Qurbani — fresh meat distributed to dozens of families across partner villages in Bangladesh and Africa.",
+    isCustom: false,
+  },
+  {
+    key: "custom",
+    animal: "Custom Amount",
+    shares: "Any amount helps",
+    price: 0,
+    img: "/eid/cta-african.png",
+    tagline: "Give what your heart can",
+    detail: "Choose your own gift toward this Eid's Qurbani. Every contribution joins others to provide fresh meat for families in Bangladesh and Africa.",
+    isCustom: true,
   },
 ] as const;
 
@@ -157,6 +169,8 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [qurbaniModal, setQurbaniModal] = useState<typeof QURBANI_OPTIONS[number] | null>(null);
   const [qurbaniLoading, setQurbaniLoading] = useState(false);
+  const [qurbaniCustomAmount, setQurbaniCustomAmount] = useState<string>("100");
+  const qurbaniCustomPresets = [50, 100, 250, 500];
 
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" });
   const countdown = useCountdown(EID_AL_ADHA_DATE);
@@ -193,12 +207,17 @@ export default function Home() {
 
   const handleQurbaniDonate = async () => {
     if (!qurbaniModal) return;
+    const amount = qurbaniModal.isCustom ? Number(qurbaniCustomAmount) : qurbaniModal.price;
+    if (!amount || amount <= 0) {
+      alert("Please enter a valid donation amount.");
+      return;
+    }
     setQurbaniLoading(true);
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: qurbaniModal.price, type: "one-time" }),
+        body: JSON.stringify({ amount, type: "one-time" }),
       });
       const { url, error } = await response.json();
       if (error) throw new Error(error);
@@ -418,7 +437,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {QURBANI_OPTIONS.map((opt) => (
                 <button
                   key={opt.key}
@@ -442,8 +461,14 @@ export default function Home() {
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-3xl font-black text-gray-900 dark:text-white">${opt.price.toLocaleString()}</span>
-                      <span className="text-sm font-medium text-gray-500 dark:text-gray-400">/ share</span>
+                      {opt.isCustom ? (
+                        <span className="text-3xl font-black text-gray-900 dark:text-white">You choose</span>
+                      ) : (
+                        <>
+                          <span className="text-3xl font-black text-gray-900 dark:text-white">${opt.price.toLocaleString()}</span>
+                          <span className="text-sm font-medium text-gray-500 dark:text-gray-400">/ share</span>
+                        </>
+                      )}
                     </div>
                     <p className="text-base font-semibold text-primary mb-2">{opt.tagline}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">{opt.detail}</p>
@@ -817,20 +842,52 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-3 left-5 text-white">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-primary">{qurbaniModal.shares}</p>
-                <h3 className="text-2xl font-bold drop-shadow">{qurbaniModal.animal} Qurbani</h3>
+                <h3 className="text-2xl font-bold drop-shadow">{qurbaniModal.isCustom ? "Qurbani Contribution" : `${qurbaniModal.animal} Qurbani`}</h3>
               </div>
             </div>
 
             <div className="p-6">
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">{qurbaniModal.detail}</p>
 
-              <div className="bg-background-light dark:bg-background-dark rounded-xl p-4 mb-5 border border-gray-100 dark:border-gray-800 flex items-center justify-between">
-                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Total</span>
-                <div className="text-right">
-                  <span className="text-3xl font-black text-gray-900 dark:text-white">${qurbaniModal.price.toLocaleString()}</span>
-                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">USD</span>
+              {qurbaniModal.isCustom ? (
+                <div className="mb-5">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Your contribution</label>
+                  <div className="grid grid-cols-4 gap-2 mb-3">
+                    {qurbaniCustomPresets.map((amt) => (
+                      <button
+                        key={amt}
+                        type="button"
+                        onClick={() => setQurbaniCustomAmount(String(amt))}
+                        className={`h-11 border-2 rounded-xl font-bold text-sm transition-all focus:outline-none ${Number(qurbaniCustomAmount) === amt
+                          ? "bg-primary border-primary text-gray-900"
+                          : "bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-primary"}`}
+                      >
+                        ${amt}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 font-semibold">$</span>
+                    <input
+                      type="number"
+                      min={1}
+                      inputMode="numeric"
+                      value={qurbaniCustomAmount}
+                      onChange={(e) => setQurbaniCustomAmount(e.target.value)}
+                      placeholder="Enter amount"
+                      className="w-full h-12 pl-8 pr-4 bg-background-light dark:bg-background-dark border-2 border-gray-200 dark:border-gray-700 rounded-xl font-bold text-gray-900 dark:text-white focus:border-primary focus:outline-none"
+                    />
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="bg-background-light dark:bg-background-dark rounded-xl p-4 mb-5 border border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Total</span>
+                  <div className="text-right">
+                    <span className="text-3xl font-black text-gray-900 dark:text-white">${qurbaniModal.price.toLocaleString()}</span>
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 ml-1">USD</span>
+                  </div>
+                </div>
+              )}
 
               <ul className="space-y-2 mb-6 text-sm text-gray-700 dark:text-gray-300">
                 <li className="flex items-center gap-2">
@@ -852,7 +909,7 @@ export default function Home() {
                 disabled={qurbaniLoading}
                 className="w-full bg-primary hover:bg-primary-dark text-gray-900 font-bold py-4 px-6 rounded-xl shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all flex items-center justify-center gap-2 group disabled:opacity-75 disabled:cursor-not-allowed"
               >
-                <span>{qurbaniLoading ? "Processing..." : `Donate $${qurbaniModal.price.toLocaleString()}`}</span>
+                <span>{qurbaniLoading ? "Processing..." : `Donate $${(qurbaniModal.isCustom ? Number(qurbaniCustomAmount) || 0 : qurbaniModal.price).toLocaleString()}`}</span>
                 {!qurbaniLoading && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>}
               </button>
               <button
