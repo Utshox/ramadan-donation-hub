@@ -175,7 +175,14 @@ export default function Home() {
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" });
   const countdown = useCountdown(EID_AL_ADHA_DATE);
 
-  const presetAmounts = useMemo(() => [75, 150, 250, 750], []);
+  const presetAmounts = useMemo(
+    () => [
+      { amount: 50, label: "Partial share" },
+      { amount: 250, label: "1 Sheep / Goat" },
+      { amount: 650, label: "1 Cow share" },
+    ],
+    []
+  );
 
   const handleCheckout = async () => {
     if (!donationAmount || Number(donationAmount) <= 0) {
@@ -356,32 +363,25 @@ export default function Home() {
                       <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold rounded uppercase">Secure</span>
                     </div>
 
-                    <div className="flex p-1 bg-gray-100 dark:bg-gray-800/50 rounded-xl mb-6">
-                      <button
-                        onClick={() => setDonationType("one-time")}
-                        className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${donationType === "one-time" ? "text-gray-900 bg-white dark:bg-primary shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"}`}
-                      >
-                        One-time
-                      </button>
-                      <button
-                        onClick={() => setDonationType("monthly")}
-                        className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${donationType === "monthly" ? "text-gray-900 bg-white dark:bg-primary shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"}`}
-                      >
-                        Monthly
-                      </button>
+                    <div className="flex items-center gap-2 mb-5 px-3 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40">
+                      <span className="material-symbols-outlined text-red-600 dark:text-red-400 text-base">schedule</span>
+                      <p className="text-xs font-semibold text-red-700 dark:text-red-300">
+                        Qurbani must be given before Eid prayers — only {countdown.days} day{countdown.days === 1 ? "" : "s"} left.
+                      </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      {presetAmounts.map((amount) => (
+                    <div className="grid grid-cols-3 gap-3 mb-4">
+                      {presetAmounts.map(({ amount, label }) => (
                         <button
                           key={amount}
                           onClick={() => setDonationAmount(amount)}
-                          className={`h-12 border-2 rounded-xl font-bold transition-all focus:outline-none ${donationAmount === amount
+                          className={`flex flex-col items-center justify-center py-2.5 border-2 rounded-xl font-bold transition-all focus:outline-none ${donationAmount === amount
                             ? "border-primary bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-primary ring-1 ring-primary"
                             : "border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary hover:bg-green-50 dark:hover:bg-green-900/20 text-gray-700 dark:text-gray-200"
                             }`}
                         >
-                          ${amount}
+                          <span className="text-base leading-tight">${amount}</span>
+                          <span className="text-[10px] font-medium opacity-70 leading-tight mt-0.5">{label}</span>
                         </button>
                       ))}
                     </div>
@@ -395,7 +395,7 @@ export default function Home() {
                         value={donationAmount}
                         onChange={(e) => setDonationAmount(e.target.value ? Number(e.target.value) : "")}
                         onFocus={() => {
-                          if (presetAmounts.includes(Number(donationAmount))) setDonationAmount("");
+                          if (presetAmounts.some((p) => p.amount === Number(donationAmount))) setDonationAmount("");
                         }}
                         className="block w-full pl-8 pr-12 py-3.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all font-medium"
                         placeholder="Custom Amount"
@@ -410,7 +410,7 @@ export default function Home() {
                       disabled={isLoading}
                       className="w-full bg-primary hover:bg-primary-dark text-gray-900 font-bold py-4 px-6 rounded-xl shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all flex items-center justify-center gap-2 group mb-4 disabled:opacity-75 disabled:cursor-not-allowed"
                     >
-                      <span>{isLoading ? "Processing..." : "Donate via Stripe"}</span>
+                      <span>{isLoading ? "Processing..." : donationAmount ? `Give Qurbani — $${Number(donationAmount).toLocaleString()}` : "Give Qurbani"}</span>
                       {!isLoading && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>}
                     </button>
                     <p className="text-xs text-center text-gray-500 dark:text-gray-400">
